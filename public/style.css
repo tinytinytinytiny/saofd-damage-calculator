@@ -1,0 +1,185 @@
+:root {
+	--background-body: floralwhite;
+	--space-step--2: calc(var(--space-step-0) / 4);
+	--space-step--1: calc(var(--space-step-0) / 2);
+	--space-step-0: 8px;
+	--space-step-1: calc(var(--space-step-0) * 2);
+	--space-step-2: calc(var(--space-step-0) * 4);
+	--space-step-3: calc(var(--space-step-0) * 6);
+	--space-step-4: calc(var(--space-step-0) * 8);
+	--space-step-5: calc(var(--space-step-0) * 10);
+	--space-step-6: calc(var(--space-step-0) * 12);
+	--text-ratio: 1.25;
+	--text-step--4: calc(1rem * pow(var(--text-ratio), -4));
+	--text-step--3: calc(1rem * pow(var(--text-ratio), -3));
+	--text-step--2: calc(1rem * pow(var(--text-ratio), -2));
+	--text-step--1: calc(1rem * pow(var(--text-ratio), -1));
+	--text-step-1: calc(1rem * pow(var(--text-ratio), 1));
+	--text-step-2: calc(1rem * pow(var(--text-ratio), 2));
+	--text-step-3: calc(1rem * pow(var(--text-ratio), 3));
+	--text-step-4: calc(1rem * pow(var(--text-ratio), 4));
+	--text-step-5: calc(1rem * pow(var(--text-ratio), 5));
+	--text-step-6: calc(1rem * pow(var(--text-ratio), 6));
+	--leading-tight: 1.1;
+	--leading-normal: 1.25;
+	--tracking-tight: -0.0125em;
+	--tracking-tightest: -0.025em;
+	--gutter: var(--space-step-2);
+	--col-width: 20rem;
+	--page-limit: calc(var(--col-width) * 4 + var(--gutter) * 3);
+}
+
+body {
+	background-color: var(--background-body);
+	font-family: 'Arial Nova', 'Arial', sans-serif;
+	line-height: var(--leading-normal);
+	padding: var(--space-step-1);
+}
+
+header {
+	font-size: var(--text-step-1);
+	column-count: 2;
+	column-gap: var(--gutter);
+	column-width: calc(var(--col-width) * 2 + var(--gutter));
+}
+
+.page {
+	max-inline-size: var(--page-limit);
+}
+
+damage-calculator form {
+	display: flex;
+	column-gap: var(--gutter);
+	row-gap: 2rlh;
+	flex-flow: row wrap;
+
+	& section {
+		flex: 1 1 var(--col-width);
+		max-inline-size: calc(var(--col-width) * 2 + var(--gutter));
+	}
+
+	& section:last-of-type {
+		flex-basis: auto;
+	}
+}
+
+code {
+	font-family: 'Cascadia Code', 'Cascadia Mono', monospace;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+	line-height: var(--leading-tight);
+}
+
+h1,
+.h1 {
+	column-span: all;
+	font-size: var(--text-step-6);
+	letter-spacing: var(--tracking-tightest);
+	margin-block-end: 1rlh;
+}
+
+h2,
+.h2 {
+	font-size: var(--text-step-2);
+	letter-spacing: var(--tracking-tight);
+}
+
+h3,
+.h3 {
+	font-size: 1rem;
+}
+
+p {
+	max-inline-size: 80ch;
+}
+
+input {
+	border: 1px solid;
+	border-radius: 0;
+}
+
+input,
+output {
+	font-variant-numeric: tabular-nums;
+}
+
+[type="text"],
+[type="number"] {
+	padding: var(--space-step--1);
+}
+
+.stack {
+	--stack-space: 1lh;
+
+	& > * + * {
+		margin-block-start: var(--stack-space);
+	}
+
+	&.page {
+		--stack-space: 3rlh;
+	}
+
+	& > :where(h1, .h1) + * {
+		margin-block-start: 0;
+	}
+
+	& > :where(h2, .h2) + * {
+		margin-block-start: 0.5rlh;
+	}
+
+	& > :where(h3, .h3) + * {
+		margin-block-start: 0;
+	}
+}
+
+.text-bold {
+	font-weight: 700;
+}
+
+.inline {
+	display: inline;
+}
+
+.input-group {
+	align-items: baseline;
+	display: flex;
+	flex-flow: row wrap;
+	column-gap: var(--space-step-1);
+	row-gap: 0.25rlh;
+
+	& > :is(label, .label) {
+		flex-basis: 12ch;
+		flex-grow: 1;
+		text-wrap: pretty;
+	}
+
+	& toggle-tip:defined {
+		margin-inline-start: 0.084em;
+	}
+
+	& input {
+		inline-size: 5em;
+	}
+
+	& + .input-group {
+		--stack-space: 0.5rlh;
+	}
+
+	& .input-grid {
+		align-items: baseline;
+		display: grid;
+		grid-template-columns: 1fr 1em;
+		column-gap: 0.25em;
+	}
+}
+
+toggle-tip:not(:defined) {
+	display: block;
+	font-size: var(--text-step--1);
+}
