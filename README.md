@@ -12,7 +12,7 @@ or
 ```
 <output aria-label="Result">0</output>
 ```
-If multiple `<output>` elements are updated at the same time, however, the updated values and labels may be announced out-of-sync. It is better to include the label as part of the `<output>`'s value:
+If multiple `<output>` elements are updated at the same time, however, the updated values and labels may be announced out of order. Rather than ascribing a programmatic label, it would be better to include the label as part of the `<output>`'s value:
 ```
 <output>Result: 0</output>
 ```
