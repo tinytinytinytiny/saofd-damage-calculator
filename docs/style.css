@@ -36,11 +36,56 @@ body {
 	padding: var(--space-step-1);
 }
 
-header {
-	font-size: var(--text-step-1);
-	column-count: 2;
-	column-gap: var(--gutter);
-	column-width: calc(var(--col-width) * 2 + var(--gutter));
+code {
+	font-family: 'Cascadia Code', 'Cascadia Mono', monospace;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+	line-height: var(--leading-tight);
+}
+
+h1,
+.h1 {
+	column-span: all;
+	font-size: var(--text-step-6);
+	letter-spacing: var(--tracking-tightest);
+	margin-block-end: 2rlh;
+}
+
+h2,
+.h2 {
+	font-size: var(--text-step-2);
+	letter-spacing: var(--tracking-tight);
+}
+
+h3,
+.h3 {
+	font-size: 1rem;
+}
+
+p {
+	max-inline-size: 80ch;
+	max-inline-size: min(100%, 80ch);
+}
+
+input {
+	border: 1px solid;
+	border-radius: 0;
+}
+
+input,
+output {
+	font-variant-numeric: tabular-nums;
+}
+
+[type="text"],
+[type="number"] {
+	padding: var(--space-step--1);
 }
 
 .page {
@@ -61,57 +106,6 @@ damage-calculator form {
 	& section:last-of-type {
 		flex-basis: auto;
 	}
-}
-
-code {
-	font-family: 'Cascadia Code', 'Cascadia Mono', monospace;
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3 {
-	line-height: var(--leading-tight);
-}
-
-h1,
-.h1 {
-	column-span: all;
-	font-size: var(--text-step-6);
-	letter-spacing: var(--tracking-tightest);
-	margin-block-end: 1rlh;
-}
-
-h2,
-.h2 {
-	font-size: var(--text-step-2);
-	letter-spacing: var(--tracking-tight);
-}
-
-h3,
-.h3 {
-	font-size: 1rem;
-}
-
-p {
-	max-inline-size: 80ch;
-}
-
-input {
-	border: 1px solid;
-	border-radius: 0;
-}
-
-input,
-output {
-	font-variant-numeric: tabular-nums;
-}
-
-[type="text"],
-[type="number"] {
-	padding: var(--space-step--1);
 }
 
 .stack {
@@ -144,6 +138,30 @@ output {
 
 .inline {
 	display: inline;
+}
+
+header {
+	font-size: var(--text-step-1);
+	column-count: 2;
+	column-gap: var(--gutter);
+	column-width: calc(var(--col-width) * 2 + var(--gutter));
+}
+
+footer {
+	border-block-start: 1px solid;
+	padding-block: var(--space-step-1);
+
+	& > * {
+		display: flex;
+		column-gap: var(--gutter);
+		flex-flow: row wrap;
+		row-gap: 1lh;
+		max-inline-size: calc(var(--col-width) * 3 + var(--gutter) * 2);
+
+		& > * {
+			flex: 1 1 var(--col-width);
+		}
+	}
 }
 
 .input-group {
