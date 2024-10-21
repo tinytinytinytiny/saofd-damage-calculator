@@ -1,8 +1,4 @@
 export class DamageCalculatorResult extends HTMLElement {
-	static get observedAttributes() {
-		return ['damage', 'criticaldamage'];
-	}
-
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
@@ -54,9 +50,9 @@ export class DamageCalculatorResult extends HTMLElement {
 		this.observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					this.shadowRoot.querySelector('.fixed').setAttribute('hidden', '');
+					this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', true);
 				} else {
-					this.shadowRoot.querySelector('.fixed').removeAttribute('hidden');
+					this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', false);
 				}
 			});
 		});
@@ -67,7 +63,11 @@ export class DamageCalculatorResult extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-		this.observer.unobserve();
+		this.observer.disconnect();
+	}
+
+	static get observedAttributes() {
+		return ['damage', 'criticaldamage'];
 	}
 
 	attributeChangedCallback(name, _, currentValue) {
