@@ -17,6 +17,7 @@ export class ToggleTip extends HTMLElement {
 					background: none;
 					border: none;
 					border-radius: calc(infinity * 1px);
+					color: inherit;
 					cursor: pointer;
 					display: inline-flex;
 					margin: 0;

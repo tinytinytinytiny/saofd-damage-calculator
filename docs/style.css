@@ -92,22 +92,6 @@ output {
 	max-inline-size: var(--page-limit);
 }
 
-damage-calculator form {
-	display: flex;
-	column-gap: var(--gutter);
-	row-gap: 2rlh;
-	flex-flow: row wrap;
-
-	& section {
-		flex: 1 1 var(--col-width);
-		max-inline-size: calc(var(--col-width) * 2 + var(--gutter));
-	}
-
-	& section:last-of-type {
-		flex-basis: auto;
-	}
-}
-
 .stack {
 	--stack-space: 1lh;
 
@@ -132,6 +116,24 @@ damage-calculator form {
 	}
 }
 
+.flex-grid {
+	display: flex;
+	flex-flow: row wrap;
+	gap: var(--gutter);
+
+	& > * {
+		flex: 1 1 var(--col-width);
+	}
+}
+
+damage-calculator .flex-grid {
+	row-gap: 2rlh;
+
+	& > :last-child {
+		flex-basis: calc(var(--col-width) * 2 + var(--gutter));
+	}
+}
+
 .text-bold {
 	font-weight: 700;
 }
@@ -151,16 +153,13 @@ footer {
 	border-block-start: 1px solid;
 	padding-block: var(--space-step-1);
 
-	& > * {
-		display: flex;
-		column-gap: var(--gutter);
-		flex-flow: row wrap;
-		row-gap: 1lh;
-		max-inline-size: calc(var(--col-width) * 3 + var(--gutter) * 2);
 
-		& > * {
-			flex: 1 1 var(--col-width);
-		}
+	&.flex-grid {
+		row-gap: 1lh;
+	}
+
+	& > .flex-grid {
+		row-gap: 0;
 	}
 }
 
