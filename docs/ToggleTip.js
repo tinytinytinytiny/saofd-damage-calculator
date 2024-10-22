@@ -1,6 +1,7 @@
 export class ToggleTip extends HTMLElement {
 	constructor() {
 		super();
+		this.getConnectedLabel();
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.innerHTML = `
 			<style>
@@ -50,7 +51,7 @@ export class ToggleTip extends HTMLElement {
 					position: absolute;
 					position-anchor: --infobutton;
 					position-area: block-start span-all;
-					position-try-fallbacks:
+					position-try: most-inline-size
 						--move-right,
 						--move-left,
 						block-start span-inline-end,
@@ -60,7 +61,6 @@ export class ToggleTip extends HTMLElement {
 						flip-block,
 						flip-inline,
 						flip-block flip-inline;
-					position-try-order: most-inline-size;
 					& p {
 						background-color: black;
 						color: var(--background-body);
@@ -68,6 +68,10 @@ export class ToggleTip extends HTMLElement {
 						max-inline-size: 60ch;
 						padding: var(--space-step-0);
 						text-wrap: pretty;
+						&:focus {
+							outline: 2px solid white;
+							outline-offset: -4px;
+						}
 					}
 				}
 				@position-try --move-right {
@@ -79,13 +83,30 @@ export class ToggleTip extends HTMLElement {
 					position-area: block-start span-inline-start;
 				}
 			</style>
-			<button type="button" popovertarget="content" aria-label="More info">
+			<button type="button" popovertarget="content" aria-label="${this.label}">
 				<svg class="outline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7 4.5V5h1v-.5H7zm1-.01v-.5H7v.5h1zM8 11V7H7v4h1zm0-6.5v-.01H7v.01h1zM6 8h1.5V7H6v1zm0 3h3v-1H6v1zM7.5 1A6.5 6.5 0 0114 7.5h1A7.5 7.5 0 007.5 0v1zM1 7.5A6.5 6.5 0 017.5 1V0A7.5 7.5 0 000 7.5h1zM7.5 14A6.5 6.5 0 011 7.5H0A7.5 7.5 0 007.5 15v-1zm0 1A7.5 7.5 0 0015 7.5h-1A6.5 6.5 0 017.5 14v1z" fill="currentColor"></path></svg>
 				<svg class="solid" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 7.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0zM7 5V3.99h1V5H7zm1 2v3h1v1H6v-1h1V8H6V7h2z" fill="currentColor"></path></svg>
 			</button>
 			<div popover id="content">
-				<p><slot></slot></p>
+				<p tabindex="0"><slot></slot></p>
 			</div>
 		`;
+
+		this.shadowRoot.querySelector('#content').addEventListener('beforetoggle', (event) => {
+			if (event.newState === 'closed' && this.shadowRoot.activeElement.closest('#content')) {
+				this.shadowRoot.querySelector('[popovertarget="content"]').focus();
+			}
+		});
+	}
+
+	getConnectedLabel() {
+		const target = this.getAttribute('for');
+
+		try {
+			const targetLabel = Array.from(document.querySelector(`#${target}`).labels).map(label => label.innerText).join('');
+			this.label = `More info about ${targetLabel}`;
+		} catch {
+			this.label = 'More info';
+		}
 	}
 }

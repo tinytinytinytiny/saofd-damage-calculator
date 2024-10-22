@@ -1,6 +1,9 @@
 export class DamageCalculatorResult extends HTMLElement {
+	static formAssociated = true;
+
 	constructor() {
 		super();
+		this.internals_ = this.attachInternals();
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.innerHTML = `
 			<style>
@@ -47,19 +50,31 @@ export class DamageCalculatorResult extends HTMLElement {
 				<p>Total Critical Damage: <span data-name="criticaldamage">0</span></p>
 			</div>
 		`;
+
+		let formVisible = false;
+		let mainVisible = false;
+
 		this.observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', true);
-				} else {
-					this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', false);
+				if (entry.target === this.shadowRoot.querySelector('.main')) {
+					mainVisible = entry.isIntersecting;
+				}
+				if (entry.target === this.internals_.form) {
+					formVisible = entry.isIntersecting;
 				}
 			});
+
+			if (mainVisible || !formVisible) {
+				this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', true);
+			} else {
+				this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', false);
+			}
 		});
 	}
 
 	connectedCallback() {
 		this.observer.observe(this.shadowRoot.querySelector('.main'));
+		this.observer.observe(this.internals_.form);
 	}
 
 	disconnectedCallback() {
