@@ -200,3 +200,18 @@ toggle-tip:not(:defined) {
 	display: block;
 	font-size: var(--text-step--1);
 }
+
+mtd {
+	text-align: left;
+}
+
+math {
+	display: block;
+	display: math;
+	margin-inline: calc(-1 * var(--space-step-1));
+	max-inline-size: min(var(--col-width) * 2 + var(--gutter), 100vw);
+	overflow-x: auto;
+	overflow-y: visible;
+	padding-inline: var(--space-step-1);
+	text-align: left;
+}

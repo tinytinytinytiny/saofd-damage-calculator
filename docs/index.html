@@ -231,12 +231,89 @@
 							<damage-calculator-result damage="0" criticaldamage="0">
 								<strong>JavaScript is required to use this calculator.</strong>
 							</damage-calculator-result>
-							<aside>
+							<aside class="stack">
 								<p>
 									The damage formula follows the layout of the table above: items within a category
 									are added, and entire categories are multiplied. There appears to be a constant
 									multiplier of 1.3.
 								</p>
+								<math display="block">
+									<mi>TotalDamage</mi>
+									<mo>=</mo>
+									<mtable align="axis 1">
+										<mtr>
+											<mtd>
+												<mo>[</mo>
+												<mi>BaseAttack</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>WeaponAttack</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mo>(</mo>
+												<mi>SpecialEffects</mi>
+												<mo>+</mo>
+												<mi>MemoriesAttack</mi>
+												<mo>)</mo>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>CharacterRankAttack</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mo>(</mo>
+												<mi>BuffsAndPassivesAttack</mi>
+												<mo>+</mo>
+												<mi>ModAttack</mi>
+												<mo>+</mo>
+												<mi>AttackQuartz</mi>
+												<mo>)</mo>
+												<mo>]</mo>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>ActionDamage</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>ElementalWeakness</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>EnemyPartDamageScale</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>WeakPointWeaponBonus</mi>
+											</mtd>
+										</mtr>
+										<mtr>
+											<mtd>
+												<mo>&times;</mo>
+												<mi>CritDamage</mi>
+											</mtd>
+										</mtr>
+									</mtable>
+								</math>
 							</aside>
 						</section>
 					</form>
