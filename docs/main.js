@@ -11,4 +11,14 @@ if (
 	&& window.CSS.supports('position-area', 'block-start span-all')
 ) {
 	customElements.define('toggle-tip', ToggleTip);
+} else {
+	const toggletips = document.querySelectorAll('toggle-tip[for]');
+	toggletips.forEach((toggletip) => {
+		const input = document.getElementById(toggletip.getAttribute('for'));
+		if (input) {
+			const randomId = crypto.randomUUID();
+			toggletip.id = randomId;
+			input.setAttribute('aria-describedby', randomId);
+		}
+	});
 }
