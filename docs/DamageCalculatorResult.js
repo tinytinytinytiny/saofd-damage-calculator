@@ -53,18 +53,20 @@ export class DamageCalculatorResult extends HTMLElement {
 
 		let formVisible = false;
 		let mainVisible = false;
+		let scrolledPastMain = false;
 
 		this.observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (entry.target === this.shadowRoot.querySelector('.main')) {
 					mainVisible = entry.isIntersecting;
+					scrolledPastMain = !mainVisible && entry.boundingClientRect.top < 0;
 				}
 				if (entry.target === this.internals_.form) {
 					formVisible = entry.isIntersecting;
 				}
 			});
 
-			if (mainVisible || !formVisible) {
+			if (mainVisible || !formVisible || scrolledPastMain) {
 				this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', true);
 			} else {
 				this.shadowRoot.querySelector('.fixed').toggleAttribute('hidden', false);

@@ -43,9 +43,7 @@ code {
 h1,
 .h1,
 h2,
-.h2,
-h3,
-.h3 {
+.h2 {
 	line-height: var(--leading-tight);
 }
 
@@ -66,11 +64,22 @@ h2,
 h3,
 .h3 {
 	font-size: 1rem;
+	letter-spacing: normal;
 }
 
 p {
 	max-inline-size: 80ch;
 	max-inline-size: min(100%, 80ch);
+}
+
+fieldset {
+	border: 0;
+	min-inline-size: 0;
+	padding: 0;
+}
+
+legend {
+	display: contents;
 }
 
 input {
@@ -88,32 +97,29 @@ output {
 	padding: var(--space-step--1);
 }
 
-.page {
-	max-inline-size: var(--page-limit);
-}
-
 .stack {
 	--stack-space: 1lh;
 
-	& > * + * {
+	:where(& > *) + * {
 		margin-block-start: var(--stack-space);
 	}
 
-	&.page {
-		--stack-space: 3rlh;
-	}
-
-	& > :where(h1, .h1) + * {
+	:where(& > h1, .h1) + * {
 		margin-block-start: 0;
 	}
 
-	& > :where(h2, .h2) + * {
-		margin-block-start: 0.5rlh;
+	:where(& > h2, .h2) + * {
+		margin-block-start: calc(1rlh * pow(var(--text-ratio), -4));
 	}
 
-	& > :where(h3, .h3) + * {
+	:where(& > h3, .h3) + * {
 		margin-block-start: 0;
 	}
+}
+
+.page {
+	--stack-space: 3rlh;
+	max-inline-size: var(--page-limit);
 }
 
 .flex-grid {
@@ -123,6 +129,7 @@ output {
 
 	& > * {
 		flex: 1 1 var(--col-width);
+		max-inline-size: 100%;
 	}
 }
 
@@ -138,8 +145,22 @@ damage-calculator .flex-grid {
 	font-weight: 700;
 }
 
-.inline {
-	display: inline;
+.mbs-0 {
+	margin-block-start: 0;
+}
+
+.mbs-1lh {
+	margin-block-start: 1rlh;
+}
+
+.sr-only {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }
 
 header {
@@ -201,17 +222,13 @@ toggle-tip:not(:defined) {
 	font-size: var(--text-step--1);
 }
 
-mtd {
-	text-align: left;
+figure {
+	margin-inline: calc(-1 * var(--space-step-1));
+	max-inline-size: calc(100% + var(--space-step-2));
+	padding-inline: var(--space-step-1);
+	overflow-x: auto;
 }
 
-math {
-	display: block;
-	display: math;
-	margin-inline: calc(-1 * var(--space-step-1));
-	max-inline-size: min(var(--col-width) * 2 + var(--gutter), 100vw);
-	overflow-x: auto;
-	overflow-y: visible;
-	padding-inline: var(--space-step-1);
+mtd {
 	text-align: left;
 }

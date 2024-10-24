@@ -11,24 +11,19 @@
 			<header class="stack">
 				<h1>Damage Calculator</h1>
 				<p>
-					Input your character information below to calculate damage. The “Attack” section can be shortcutted
-					by
-					inputting your total attack (seen in-game) into Base Attack, and setting all other values to 0.
+					Input your character information below to calculate damage. The <a href="#calculate-attack">“Attack”
+						section</a> can be shortcutted by inputting your total attack (seen in-game) into Base Attack,
+					and setting all other values to 0.
 				</p>
 				<p>
 					Categories labeled “Unconfirmed” need testing in regards to their position in the formula. Some
-					information,
-					such as character Base Attack, Character Rank Attack, Buff values, and Passive Skill values cannot
-					be
-					seen
-					in-game, but can be found throughout this site.
+					information, such as character Base Attack, Character Rank Attack, Buff values, and Passive Skill
+					values cannot be seen in-game, but can be found throughout this site.
 				</p>
 				<p>
 					Depending on which screen you view your attack stat in-game, the value may be rounded. However, on
-					most
-					screens, the mathematical ceiling is used so any decimal is pushed up to the nearest integer, i.e.
-					1000.2 →
-					1001.
+					most screens, the mathematical ceiling is used so any decimal is pushed up to the nearest integer,
+					i.e. 1000.2 → 1001.
 				</p>
 				<p>
 					If you notice any errors, please feel free to point them out in our discord.
@@ -37,285 +32,350 @@
 			<main>
 				<damage-calculator>
 					<form class="flex-grid">
-						<section class="stack">
-							<h2>Calculate Attack</h2>
+						<fieldset class="stack" id="calculate-attack">
+							<legend class="h2">
+								<h2>Calculate Attack</h2>
+							</legend>
 							<p class="text-bold">
 								Attack: <span id="attack">0</span>
 							</p>
-							<h3>Category 1</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="base-attack">Base Attack</label>
-									<toggle-tip for="base-attack">Character-specific and affected by Awakening
-										level.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="baseAttack" id="base-attack"
-										value="180">
-								</span>
-							</div>
-							<h3>Category 2</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="weapon-attack">Weapon Attack</label>
-									<toggle-tip for="weapon-attack">Can be viewed in your Weapons & Accessories
-										list.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="weaponAttack" id="weapon-attack"
-										value="622"> %
-								</span>
-							</div>
-							<h3>Category 3</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="special-effects-attack">Special Effects Attack</label>
-									<toggle-tip for="special-effects-attack">Sum of all the attack special effects on
-										your equipment.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="specialEffectsAttack"
-										id="special-effects-attack" value="0">
-									%
-								</span>
-							</div>
-							<div class="input-group">
-								<span class="label">
-									<label for="memories-attack">Memories Attack</label>
-									<toggle-tip for="memories-attack">Refers to the <cite>History of SAO Games</cite>
-										Memories
-										Level.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="memoriesAttack" id="memories-attack"
-										value="7.9"> %
-								</span>
-							</div>
-							<h3>Category 4</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="character-rank-attack">Character Rank Attack</label>
-									<toggle-tip for="character-rank-attack">Sum of all attack bonuses for ranking up a
-										character. 6% at Rank
-										100.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="characterRankAttack"
-										id="character-rank-attack" value="5.5">
-									%
-								</span>
-							</div>
-							<h3>Category 5</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="buffs-passives-attack">Buffs & Passives Attack</label>
-									<toggle-tip for="buffs-passives-attack">Sum of the attack gain from buffs and
-										passive skills.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="buffsPassivesAttack"
-										id="buffs-passives-attack" value="0"> %
-								</span>
-							</div>
-							<div class="input-group">
-								<span class="label">
-									<label for="mod-attack">Mod Attack</label>
-									<toggle-tip for="mod-attack">Attack mods drop from treasure chests in most
-										quests.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="modAttack" id="mod-attack" value="0">
-									%
-								</span>
-							</div>
-							<div class="input-group">
-								<span class="label">
-									<label for="attack-quartz">Attack Quartz</label>
-									<toggle-tip for="attack-quartz">Attack Quartz are the red triangular crystals that
-										drop in
-										quests.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="attackQuartz" id="attack-quartz"
-										value="0"> %
-								</span>
-							</div>
-						</section>
-						<section class="stack">
-							<h2>Calculate Multipliers</h2>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 1</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="base-attack">Base Attack</label>
+										<toggle-tip for="base-attack">Character-specific and affected by Awakening
+											level.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="baseAttack" id="base-attack"
+											value="180">
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 2</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="weapon-attack">Weapon Attack</label>
+										<toggle-tip for="weapon-attack">Can be viewed in your Weapons & Accessories
+											list.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="weaponAttack" id="weapon-attack"
+											value="622"> %
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 3</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="special-effects-attack">Special Effects Attack</label>
+										<toggle-tip for="special-effects-attack">Sum of all the attack special effects
+											on
+											your equipment.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="specialEffectsAttack"
+											id="special-effects-attack" value="0">
+										%
+									</span>
+								</div>
+								<div class="input-group">
+									<span class="label">
+										<label for="memories-attack">Memories Attack</label>
+										<toggle-tip for="memories-attack">Refers to the <cite>History of SAO
+												Games</cite>
+											Memories
+											Level.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="memoriesAttack"
+											id="memories-attack" value="7.9"> %
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 4</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="character-rank-attack">Character Rank Attack</label>
+										<toggle-tip for="character-rank-attack">Sum of all attack bonuses for ranking up
+											a
+											character. 6% at Rank
+											100.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="characterRankAttack"
+											id="character-rank-attack" value="5.5">
+										%
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 5</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="buffs-passives-attack">Buffs & Passives Attack</label>
+										<toggle-tip for="buffs-passives-attack">Sum of the attack gain from buffs and
+											passive skills.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="buffsPassivesAttack"
+											id="buffs-passives-attack" value="0"> %
+									</span>
+								</div>
+								<div class="input-group">
+									<span class="label">
+										<label for="mod-attack">Mod Attack</label>
+										<toggle-tip for="mod-attack">Attack mods drop from treasure chests in most
+											quests.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="modAttack" id="mod-attack"
+											value="0">
+										%
+									</span>
+								</div>
+								<div class="input-group">
+									<span class="label">
+										<label for="attack-quartz">Attack Quartz</label>
+										<toggle-tip for="attack-quartz">Attack Quartz are the red triangular crystals
+											that
+											drop in
+											quests.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="attackQuartz" id="attack-quartz"
+											value="0"> %
+									</span>
+								</div>
+							</fieldset>
+						</fieldset>
+						<fieldset class="stack" id="calculate-multipliers">
+							<legend class="h2">
+								<h2>Calculate Multipliers</h2>
+							</legend>
 							<p class="text-bold">
 								Multipliers: <span id="multipliers">0</span>
 							</p>
-							<h3>Category 1</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="action-damage">Action Damage</label>
-									<toggle-tip for="action-damage">Damage amount of the skill or attack.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="actionDamage" id="action-damage"
-										value="100"> %
-								</span>
-							</div>
-							<h3>Category 2</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="elemental-weakness-multiplier">Elemental Weakness Multiplier</label>
-									<toggle-tip for="elemental-weakness-multiplier">Damage increase for using the
-										enemy's weakness element. 20% for most
-										enemies, plus any bonuses from equipment. Maxes at 100%.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="elementalWeaknessMultiplier"
-										id="elemental-weakness-multiplier" value="0"> %
-								</span>
-							</div>
-							<h3>Category 3 (Unconfirmed)</h3>
-							<div class="input-group">
-								<label for="melee-ranged-damage">Melee & Ranged Damage</label>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="meleeRangedDamage"
-										id="melee-ranged-damage" value="0"> %
-								</span>
-							</div>
-							<h3>Category 4 (Unconfirmed)</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="enemy-part-multiplier">Enemy Part Multiplier</label>
-									<toggle-tip for="enemy-part-multiplier">Different body parts of an enemy can take
-										different amounts of
-										damage.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="enemyPartMultiplier"
-										id="enemy-part-multiplier" value="1">
-								</span>
-							</div>
-							<h3>Category 5 (Unconfirmed)</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="weapon-weak-point-damage">Weapon Weak Point Damage</label>
-									<toggle-tip for="weapon-weak-point-damage">Depends on your equipped weapon and the
-										enemy being hit.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="weaponWeakPointDamage"
-										id="weapon-weak-point-damage" value="100">
-									%
-								</span>
-							</div>
-							<h3>Category 6 (Unconfirmed)</h3>
-							<div class="input-group">
-								<span class="label">
-									<label for="status-ailment-multiplier">Status Ailment Multiplier</label>
-									<toggle-tip for="status-ailment-multiplier">Special effects that boost damage
-										against enemies afflicted by status
-										ailments, such as stun, freeze, and poison, go here.</toggle-tip>
-								</span>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="statusAilmentMultiplier"
-										id="status-ailment-multiplier" value="0">
-									%
-								</span>
-							</div>
-							<h3>Category 7 (Unconfirmed)</h3>
-							<div class="input-group">
-								<label for="critical-damage">Critical Damage</label>
-								<span class="input-grid">
-									<input type="number" inputmode="decimal" name="criticalDamage" id="critical-damage"
-										value="100"> %
-								</span>
-							</div>
-						</section>
-						<section class="stack">
-							<damage-calculator-result damage="0" criticaldamage="0">
-								<strong>JavaScript is required to use this calculator.</strong>
-							</damage-calculator-result>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 1</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="action-damage">Action Damage</label>
+										<toggle-tip for="action-damage">Damage amount of the skill or
+											attack.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="actionDamage" id="action-damage"
+											value="100"> %
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 2</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="elemental-weakness-multiplier">Elemental Weakness Multiplier</label>
+										<toggle-tip for="elemental-weakness-multiplier">Damage increase for using the
+											enemy's weakness element. 20% for most
+											enemies, plus any bonuses from equipment. Maxes at 100%.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="elementalWeaknessMultiplier"
+											id="elemental-weakness-multiplier" value="0"> %
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 3 (Unconfirmed)</h3>
+								</legend>
+								<div class="input-group">
+									<label for="melee-ranged-damage">Melee & Ranged Damage</label>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="meleeRangedDamage"
+											id="melee-ranged-damage" value="0"> %
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 4 (Unconfirmed)</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="enemy-part-multiplier">Enemy Part Multiplier</label>
+										<toggle-tip for="enemy-part-multiplier">Different body parts of an enemy can
+											take
+											different amounts of
+											damage.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="enemyPartMultiplier"
+											id="enemy-part-multiplier" value="1">
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 5 (Unconfirmed)</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="weapon-weak-point-damage">Weapon Weak Point Damage</label>
+										<toggle-tip for="weapon-weak-point-damage">Depends on your equipped weapon and
+											the
+											enemy being hit.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="weaponWeakPointDamage"
+											id="weapon-weak-point-damage" value="100">
+										%
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 6 (Unconfirmed)</h3>
+								</legend>
+								<div class="input-group">
+									<span class="label">
+										<label for="status-ailment-multiplier">Status Ailment Multiplier</label>
+										<toggle-tip for="status-ailment-multiplier">Special effects that boost damage
+											against enemies afflicted by status
+											ailments, such as stun, freeze, and poison, go here.</toggle-tip>
+									</span>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="statusAilmentMultiplier"
+											id="status-ailment-multiplier" value="0">
+										%
+									</span>
+								</div>
+							</fieldset>
+							<fieldset class="stack">
+								<legend class="h3">
+									<h3>Category 7 (Unconfirmed)</h3>
+								</legend>
+								<div class="input-group">
+									<label for="critical-damage">Critical Damage</label>
+									<span class="input-grid">
+										<input type="number" inputmode="decimal" name="criticalDamage"
+											id="critical-damage" value="100"> %
+									</span>
+								</div>
+							</fieldset>
+						</fieldset>
+						<div class="stack">
+							<fieldset id="result">
+								<legend>
+									<h2 class="sr-only">Result</h2>
+								</legend>
+								<damage-calculator-result damage="0" criticaldamage="0">
+									<strong>JavaScript is required to use this calculator.</strong>
+								</damage-calculator-result>
+							</fieldset>
 							<aside class="stack">
+								<h2 class="h3" id="damage-formula">Damage Formula</h2>
+								<figure class="stack mbs-1lh" aria-labelledby="damage-formula">
+									<math>
+										<mi>TotalDamage</mi>
+										<mo>=</mo>
+										<mtable align="axis 1" role="presentation">
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mo>[</mo>
+													<mi>BaseAttack</mi>
+													<mo>&times;</mo>
+													<mi>WeaponAttack</mi>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mphantom>
+														<mo>[</mo>
+													</mphantom>
+													<mo>&times;</mo>
+													<mo>(</mo>
+													<mi>SpecialEffects</mi>
+													<mo>+</mo>
+													<mi>MemoriesAttack</mi>
+													<mo>)</mo>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mphantom>
+														<mo>[</mo>
+													</mphantom>
+													<mo>&times;</mo>
+													<mi>CharacterRankAttack</mi>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mphantom>
+														<mo>[</mo>
+													</mphantom>
+													<mo>&times;</mo>
+													<mo>(</mo>
+													<mi>BuffsAndPassivesAttack</mi>
+													<mo>+</mo>
+													<mi>ModAttack</mi>
+													<mo>+</mo>
+													<mi>AttackQuartz</mi>
+													<mo>)</mo>
+													<mo>]</mo>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mo>&times;</mo>
+													<mi>ActionDamage</mi>
+													<mo>&times;</mo>
+													<mi>ElementalWeakness</mi>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mo>&times;</mo>
+													<mi>EnemyPartDamageScale</mi>
+													<mo>&times;</mo>
+													<mi>WeakPointWeaponBonus</mi>
+												</mtd>
+											</mtr>
+											<mtr role="presentation">
+												<mtd role="presentation">
+													<mo>&times;</mo>
+													<mi>CritDamage</mi>
+												</mtd>
+											</mtr>
+										</mtable>
+									</math>
+								</figure>
 								<p>
 									The damage formula follows the layout of the table above: items within a category
 									are added, and entire categories are multiplied. There appears to be a constant
 									multiplier of 1.3.
 								</p>
-								<math display="block">
-									<mi>TotalDamage</mi>
-									<mo>=</mo>
-									<mtable align="axis 1">
-										<mtr>
-											<mtd>
-												<mo>[</mo>
-												<mi>BaseAttack</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>WeaponAttack</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mo>(</mo>
-												<mi>SpecialEffects</mi>
-												<mo>+</mo>
-												<mi>MemoriesAttack</mi>
-												<mo>)</mo>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>CharacterRankAttack</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mo>(</mo>
-												<mi>BuffsAndPassivesAttack</mi>
-												<mo>+</mo>
-												<mi>ModAttack</mi>
-												<mo>+</mo>
-												<mi>AttackQuartz</mi>
-												<mo>)</mo>
-												<mo>]</mo>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>ActionDamage</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>ElementalWeakness</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>EnemyPartDamageScale</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>WeakPointWeaponBonus</mi>
-											</mtd>
-										</mtr>
-										<mtr>
-											<mtd>
-												<mo>&times;</mo>
-												<mi>CritDamage</mi>
-											</mtd>
-										</mtr>
-									</mtable>
-								</math>
 							</aside>
-						</section>
+						</div>
 					</form>
 				</damage-calculator>
 			</main>
