@@ -94,7 +94,7 @@ export class ToggleTip extends HTMLElement {
 		`;
 
 		this.shadowRoot.querySelector('#content').addEventListener('beforetoggle', (event) => {
-			if (event.newState === 'closed' && this.shadowRoot.activeElement.closest('#content')) {
+			if (event.newState === 'closed' && this.shadowRoot.activeElement?.closest('#content')) {
 				this.shadowRoot.querySelector('[popovertarget="content"]').focus();
 			}
 		});
